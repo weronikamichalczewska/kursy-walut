@@ -20,9 +20,9 @@ export const countries = [
     currency: 'Frank szwajcarski',
   },
   {
-    flag: 'https://cinkciarz.pl/images/design-system/flags/currencies/aed.svg',
-    code: 'aed',
-    currency: 'Dirham Zjednoczonych Emiratów Arabskich',
+    flag: 'https://cinkciarz.pl/images/design-system/flags/currencies/jpy.svg',
+    code: 'jpy',
+    currency: 'Jen japoński',
   },
   {
     flag: 'https://cinkciarz.pl/images/design-system/flags/currencies/pln.svg',
