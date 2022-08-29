@@ -32,6 +32,14 @@ const Chart = () => {
   const [post, setPost] = useState();
   const { id } = useParams();
 
+  const label = {
+    date: [
+      { name: '10 days', value: 10 },
+      { name: '6months', value: 181 },
+      { '1year': 365 },
+    ],
+  };
+
   useEffect(() => {
     async function getPost() {
       const response = await rate.get(`/${id}/last/10/?format=json`);
@@ -40,7 +48,31 @@ const Chart = () => {
     getPost();
   }, [id]);
 
-  const label = ['10 days', '6 months', '1 year'];
+  const options = {
+    responsive: true,
+    scale: {
+      ticks: {
+        //precision: 1,
+      },
+    },
+    scales: {
+      y: {
+        grid: {
+          color: '#2B2B2B',
+        },
+      },
+      x: {
+        grid: {
+          display: 'false',
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        align: 'end',
+      },
+    },
+  };
 
   const data = {
     type: 'line',
@@ -53,12 +85,11 @@ const Chart = () => {
     }),
     datasets: [
       {
-        label: label[0],
-        data: post?.rates?.map((y) => y.mid),
+        label: label.date[0].name,
+        data: post?.rates?.map((y) => y.mid.toFixed(4)),
         lineTension: 0.1,
         backgroundColor: 'rgba(15, 174, 150)',
         borderColor: 'rgba(15, 174, 150)',
-        gridLines: 'false',
         borderCapStyle: 'butt',
         borderDash: [],
         borderDashOffset: 0.0,
@@ -74,15 +105,14 @@ const Chart = () => {
         pointHitRadius: 10,
       },
       {
-        label: label[1],
+        label: label.date[1].name,
         data: post?.rates?.map((y) => y.mid),
         lineTension: 0.1,
-        backgroundColor: 'rgba(15, 174, 150)',
+        backgroundColor: '#fff',
         borderColor: 'rgba(15, 174, 150)',
-        gridLines: 'false',
         borderCapStyle: 'butt',
-        hidden: 'true',
         borderDash: [],
+        hidden: 'true',
         borderDashOffset: 0.0,
         borderJoinStyle: 'miter',
         pointBorderColor: 'rgba(15, 174, 150)',
@@ -96,9 +126,6 @@ const Chart = () => {
         pointHitRadius: 10,
       },
     ],
-    options: {
-      responsive: true,
-    },
   };
 
   return (
@@ -107,10 +134,11 @@ const Chart = () => {
         width: '800px',
         height: '800px',
         margin: '0px auto',
-        paddingTop: '500px',
+        paddingTop: '470px',
       }}
     >
-      <Line data={data} />
+      <h3 style={{ color: '#ecf1f0' }}>Wykres kursu średniego</h3>
+      <Line data={data} options={options} />
     </div>
   );
 };

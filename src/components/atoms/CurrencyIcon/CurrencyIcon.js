@@ -14,7 +14,7 @@ const CurrencyIcon = (props) => {
   const isPLN = props.isPLN;
   const element = countries.find((el) => el.code === id);
   if (isPLN) {
-    const element = countries.find((el) => el.code === countries[5].code);
+    const element = countries.find((el) => el.code === countries[15].code);
     return <Icon src={element.flag} />;
   }
   return element ? <Icon src={element.flag} /> : null;

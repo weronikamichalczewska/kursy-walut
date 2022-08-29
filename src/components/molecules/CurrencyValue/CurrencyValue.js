@@ -53,7 +53,7 @@ const CurrencyValue = () => {
   return (
     <Wrapper>
       <Frame>
-        <Rate>{post.rates[0].mid}</Rate>
+        <Rate>{post.rates[0].mid.toFixed(4)}</Rate>
         <Percent />
       </Frame>
     </Wrapper>
